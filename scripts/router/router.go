@@ -4,6 +4,7 @@ import (
 	"net/http"
 
 	"github.com/golang-mysql/scripts/image"
+	"github.com/golang-mysql/scripts/image_v2"
 	"github.com/golang-mysql/scripts/utils"
 	"github.com/gorilla/mux"
 )
@@ -16,6 +17,8 @@ func newIndexHandler() http.Handler {
 
 	// Api Resize Image
 	router.HandleFunc("/api/v1/image", image.Upload).Methods("POST")
+	// Resize image_v2
+	router.HandleFunc("/api/v2/image", image_v2.Upload).Methods("POST")
 
 	router.HandleFunc("/healthz", utils.Healthz).Methods("GET")
 	utils.Cron()
