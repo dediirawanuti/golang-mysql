@@ -7,7 +7,7 @@ import (
 
 	_ "github.com/joho/godotenv/autoload"
 	"github.com/rs/cors"
-	"github.com/sekitar-core/scripts/router"
+	"github.com/golang-mysql/scripts/router"
 )
 
 func main() {
@@ -24,6 +24,8 @@ func main() {
 		Addr:    ":8910",
 		Handler: c.Handler(router.Index),
 	}
+
+	fmt.Println(srv.Addr)
 
 	srv.ListenAndServe()	
 
