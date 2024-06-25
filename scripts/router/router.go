@@ -3,6 +3,7 @@ package router
 import (
 	"net/http"
 
+	"github.com/golang-mysql/scripts/image"
 	"github.com/golang-mysql/scripts/utils"
 	"github.com/gorilla/mux"
 )
@@ -12,6 +13,9 @@ var Index = newIndexHandler()
 func newIndexHandler() http.Handler {
 	router := mux.NewRouter()
 	router.Use(commonMiddleware)
+
+	// Api Resize Image
+	router.HandleFunc("/api/v1/image", image.Upload).Methods("POST")
 
 	router.HandleFunc("/healthz", utils.Healthz).Methods("GET")
 	utils.Cron()
