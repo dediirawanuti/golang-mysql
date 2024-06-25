@@ -3,9 +3,8 @@ package router
 import (
 	"net/http"
 
-	"github.com/gorilla/mux"
 	"github.com/golang-mysql/scripts/utils"
-
+	"github.com/gorilla/mux"
 )
 
 var Index = newIndexHandler()
@@ -15,6 +14,7 @@ func newIndexHandler() http.Handler {
 	router.Use(commonMiddleware)
 
 	router.HandleFunc("/healthz", utils.Healthz).Methods("GET")
+	utils.Cron()
 
 	return router
 }
