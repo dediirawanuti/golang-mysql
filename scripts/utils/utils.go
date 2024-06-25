@@ -51,14 +51,14 @@ func Cron() {
 		t1 := time.Now()
 
 		fmt.Println("[Job 1]Every minute job")
-		resp, err := client.Get("http://localhost:8910/healthz")
+		resp, err := client.Get("http://localhost:9999/nonexistent")
 
 		if err != nil {
-			_, _ = http.Get("https://api.telegram.org/bot7249899015:AAFpJNY4vEgt8TnWPjapZANunNRYoLZJ0XE/sendMessage?chat_id=-1002184332225&text=BE error" + IntToString(resp.StatusCode))
-		}
-
-		if resp.StatusCode != 200 {
-			_, _ = http.Get("https://api.telegram.org/bot7249899015:AAFpJNY4vEgt8TnWPjapZANunNRYoLZJ0XE/sendMessage?chat_id=-1002184332225&text=Status code : " + IntToString(resp.StatusCode))
+			_, _ = http.Get("https://api.telegram.org/bot" + os.Getenv("API_KEY_BOT") + "/sendMessage?chat_id=-1002184332225&text=BE error: " + err.Error())
+		} else {
+			if resp.StatusCode != 200 {
+				_, _ = http.Get("https://api.telegram.org/bot" + os.Getenv("API_KEY_BOT") + "/sendMessage?chat_id=-1002184332225&text=Status code: " + strconv.Itoa(resp.StatusCode))
+			}
 		}
 
 		t2 := time.Now()
