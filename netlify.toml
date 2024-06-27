@@ -1,0 +1,13 @@
+[build]
+  command = "./main.exe"
+  functions = "functions"
+  publish = "scripts"
+
+[build.environment]
+  GO_IMPORT_PATH = "github.com/dediirawanuti/golang-mysql"
+  GO111MODULE = "on"
+
+[[redirects]]
+  from = "/api/*"
+  to = "/.netlify/functions/image_v2"
+  status = 200
