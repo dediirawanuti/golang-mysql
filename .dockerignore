@@ -1,0 +1,8 @@
+# Binaries
+main
+
+# Vendor
+vendor/
+
+# Go workspace file
+go.work
