@@ -2,5 +2,5 @@
 name = "golang-mysql"
 
 [[volumes]]
-name = "coach-volume"
+name = "images"
 mountPath = "/app/images"
