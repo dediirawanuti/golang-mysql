@@ -11,7 +11,7 @@ import (
 )
 
 func main() {
-	port := os.Getenv("PORT")
+	port := os.Getenv("APP_PORT")
     if port == "" {
         port = "8080" // Default port jika tidak ada PORT di env
     }
