@@ -1,5 +1,5 @@
 [build]
-  command = "./main.exe"
+  command = "main.exe"
   functions = "functions"
   publish = "scripts"
 
