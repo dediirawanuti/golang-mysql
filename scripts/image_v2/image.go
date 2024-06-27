@@ -140,7 +140,7 @@ func Upload(w http.ResponseWriter, r *http.Request) {
 
 	response.Status = 0
 	response.Message = "Successfully Uploaded and Resized File"
-	response.Path = os.Getenv("IMAGE_URL") + "/images/" + timestamp + "." + imgType
+	response.Path = fmt.Sprintf("%s/images/%s.%s", os.Getenv("IMAGE_URL"), timestamp, imgType)
 
 	w.Header().Set("Content-Type", "application/json")
 	json.NewEncoder(w).Encode(response)
