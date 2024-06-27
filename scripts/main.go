@@ -17,15 +17,13 @@ func main() {
 
 	c := cors.New(cors.Options{
 		AllowedOrigins: []string{"*"},                               // All origins
-		AllowedMethods: []string{"POST, GET, OPTIONS, PUT, DELETE"}, // Allowing only get, just an example
+		AllowedMethods: []string{"POST", "GET", "OPTIONS", "PUT", "DELETE"}, // Allowing only get, just an example
 	})
 
 	srv := &http.Server{
-		Addr:    ":8910",
+		Addr:    os.Getenv("APP_PORT"),
 		Handler: c.Handler(router.Index),
 	}
-
-	fmt.Println("Port" + srv.Addr)
 
 	srv.ListenAndServe()	
 
