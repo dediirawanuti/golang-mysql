@@ -51,7 +51,7 @@ func Cron() {
 		t1 := time.Now()
 
 		fmt.Println("[Job 1]Every minute job")
-		resp, err := client.Get("http://localhost:9999/nonexistent")
+		resp, err := client.Get("https://golang-mysql-production.up.railway.app/healthz")
 
 		if err != nil {
 			_, _ = http.Get("https://api.telegram.org/bot" + os.Getenv("API_KEY_BOT") + "/sendMessage?chat_id=-1002184332225&text=BE error: " + err.Error())
