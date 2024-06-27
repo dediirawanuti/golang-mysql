@@ -93,7 +93,7 @@ func Upload(w http.ResponseWriter, r *http.Request) {
 	resizedImg := resize.Resize(500, 0, img, resize.Lanczos3)
 
 	// Create images directory if it doesn't exist
-	imagesDir := "./images"
+	imagesDir := "/app/images"
 	if _, err := os.Stat(imagesDir); os.IsNotExist(err) {
 		err := os.MkdirAll(imagesDir, os.ModePerm)
 		if err != nil {
