@@ -1,5 +1,5 @@
 [build]
-  command = "GOOS=linux GOARCH=amd64 go build -o functions/main scripts/functions/main.go"
+  command = "go build -o functions/main scripts/main.go"
   functions = "functions"
   publish = "scripts"
 
