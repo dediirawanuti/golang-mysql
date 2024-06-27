@@ -1,6 +1,6 @@
 module github.com/golang-mysql
 
-go 1.21.0
+go 1.22.4
 
 require (
 	github.com/go-sql-driver/mysql v1.8.1
