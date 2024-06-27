@@ -16,6 +16,9 @@ COPY scripts/ /app/scripts/
 # Set the current working directory inside the container
 WORKDIR /app/scripts
 
+# Create the images directory
+RUN mkdir -p /app/images
+
 # Build the Go app
 RUN go build -o main .
 
