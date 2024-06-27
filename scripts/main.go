@@ -25,7 +25,7 @@ func main() {
 		Handler: c.Handler(router.Index),
 	}
 
-	fmt.Println(srv.Addr)
+	fmt.Println("Port" + srv.Addr)
 
 	srv.ListenAndServe()	
 
