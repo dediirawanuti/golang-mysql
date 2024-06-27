@@ -10,6 +10,7 @@ import (
 	"io"
 	"net/http"
 	"os"
+	"path/filepath"
 	"strconv"
 	"time"
 
@@ -91,8 +92,22 @@ func Upload(w http.ResponseWriter, r *http.Request) {
 	// Resize image to width 500 preserving the aspect ratio
 	resizedImg := resize.Resize(500, 0, img, resize.Lanczos3)
 
+	// Create images directory if it doesn't exist
+	imagesDir := "./images"
+	if _, err := os.Stat(imagesDir); os.IsNotExist(err) {
+		err := os.MkdirAll(imagesDir, os.ModePerm)
+		if err != nil {
+			response.Status = 2
+			response.Message = "Error Creating Directory"
+			response.Error = err.Error()
+			w.Header().Set("Content-Type", "application/json")
+			json.NewEncoder(w).Encode(response)
+			return
+		}
+	}
+
 	// Create file
-	dstPath := fmt.Sprintf("./images/%s.%s", timestamp, imgType)
+	dstPath := filepath.Join(imagesDir, fmt.Sprintf("%s.%s", timestamp, imgType))
 	dst, err := os.Create(dstPath)
 	if err != nil {
 		response.Status = 2
