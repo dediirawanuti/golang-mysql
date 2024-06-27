@@ -25,6 +25,8 @@ func main() {
 		Handler: c.Handler(router.Index),
 	}
 
+	fmt.Sprintf(srv.Addr)
+
 	srv.ListenAndServe()	
 
 }
