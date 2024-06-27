@@ -11,6 +11,10 @@ import (
 )
 
 func main() {
+	port := os.Getenv("PORT")
+    if port == "" {
+        port = "8080" // Default port jika tidak ada PORT di env
+    }
 
 	fmt.Println("run main")
 	fmt.Println(os.Getenv("ENVIRONMENT"))
@@ -21,11 +25,11 @@ func main() {
 	})
 
 	srv := &http.Server{
-		Addr:    os.Getenv("APP_PORT"),
+		Addr:    ":" + port,
 		Handler: c.Handler(router.Index),
 	}
 
-	fmt.Sprintf(srv.Addr)
+	fmt.Println("Server starting on port " + port)
 
 	srv.ListenAndServe()	
 
