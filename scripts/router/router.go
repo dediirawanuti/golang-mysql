@@ -19,6 +19,7 @@ func newIndexHandler() http.Handler {
 	router.HandleFunc("/api/v1/image", image.Upload).Methods("POST")
 	// Resize image_v2
 	router.HandleFunc("/api/v2/image", image_v2.Upload).Methods("POST")
+	router.PathPrefix("/images/").Handler(http.StripPrefix("/images/", http.FileServer(http.Dir("./images"))))
 
 	router.HandleFunc("/healthz", utils.Healthz).Methods("GET")
 	utils.Cron()
