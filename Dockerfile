@@ -1,5 +1,5 @@
 # Start with the official Golang image
-FROM golang:1.22
+FROM golang:1.22-alpine
 
 # Set the current working directory inside the container
 WORKDIR /app
@@ -17,13 +17,13 @@ COPY scripts/ /app/scripts/
 WORKDIR /app/scripts
 
 # Create the images directory
-RUN mkdir -p /app/images
+# RUN mkdir -p /app/images
 
 # Build the Go app
 RUN go build -o main .
 
 # Expose the port on which the app will run
-EXPOSE 8910
+EXPOSE 8911
 
 # Command to run the executable
 CMD ["./main"]

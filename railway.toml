@@ -1,6 +1,0 @@
-[service]
-name = "golang-mysql"
-
-[[volumes]]
-name = "images"
-mountPath = "/app/images"

@@ -4,6 +4,7 @@
 
 # Ignore environment variable files
 .env
+Dockerfile
 
 # Binaries for programs and plugins
 *.exe

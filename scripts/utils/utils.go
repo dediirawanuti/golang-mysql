@@ -51,7 +51,7 @@ func Cron() {
 		t1 := time.Now()
 
 		fmt.Println("[Job 1]Every minute job")
-		resp, err := client.Get("https://golang-mysql-production.up.railway.app/healthz")
+		resp, err := client.Get("https://rsiaummiathayya.my.id/api-bpjsfktl/healthz")
 
 		if err != nil {
 			_, _ = http.Get("https://api.telegram.org/bot" + os.Getenv("API_KEY_BOT") + "/sendMessage?chat_id=-1002184332225&text=BE error: " + err.Error())
@@ -72,6 +72,33 @@ func Cron() {
 		fmt.Println(ss)
 
 	})
+
+	c.AddFunc("2 10 * * *", func() {
+		t1 := time.Now()
+
+		fmt.Println("[Job 2]Cek Durasi")
+		resp, err := client.Get("http://88.222.242.229:8911/durasi")
+
+		if err != nil {
+			_, _ = http.Get("https://api.telegram.org/bot" + os.Getenv("API_KEY_BOT") + "/sendMessage?chat_id=-1002184332225&text=BE error: " + err.Error())
+		} else {
+			if resp.StatusCode != 200 {
+				_, _ = http.Get("https://api.telegram.org/bot" + os.Getenv("API_KEY_BOT") + "/sendMessage?chat_id=-1002184332225&text=Status code: " + strconv.Itoa(resp.StatusCode))
+			}
+		}
+
+		t2 := time.Now()
+		hs := t2.Sub(t1).Hours()
+
+		hs, mf := math.Modf(hs)
+		ms := mf * 60
+
+		ms, sf := math.Modf(ms)
+		ss := sf * 60 * 1000
+		fmt.Println(ss)
+
+	})
+
 	fmt.Println("Start cron")
 	c.Start()
 }

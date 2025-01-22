@@ -5,6 +5,7 @@ import (
 
 	"github.com/golang-mysql/scripts/image"
 	"github.com/golang-mysql/scripts/image_v2"
+	"github.com/golang-mysql/scripts/durasirawat"
 	"github.com/golang-mysql/scripts/utils"
 	"github.com/gorilla/mux"
 )
@@ -23,6 +24,8 @@ func newIndexHandler() http.Handler {
 	router.PathPrefix("/images/").Handler(http.StripPrefix("/images/", http.FileServer(http.Dir("/app/images/"))))
 
 	router.HandleFunc("/healthz", utils.Healthz).Methods("GET")
+
+	router.HandleFunc("/durasi", durasirawat.DurasiHandler).Methods("GET")
 	utils.Cron()
 
 	return router
