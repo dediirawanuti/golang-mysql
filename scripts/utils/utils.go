@@ -73,7 +73,7 @@ func Cron() {
 
 	})
 
-	c.AddFunc("2 10 * * *", func() {
+	c.AddFunc("0 11 * * *", func() {
 		t1 := time.Now()
 
 		fmt.Println("[Job 2]Cek Durasi")
